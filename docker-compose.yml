@@ -1,0 +1,19 @@
+web:
+  build: .
+  volumes:
+    - "./app:/src/app"
+  ports:
+    - "3000:3000"
+  links:
+    - "db"
+
+db:
+  image: mongo
+  restart: always
+  environment:
+    MONGO_INITDB_ROOT_USERNAME: root
+    MONGO_INITDB_ROOT_PASSWORD: password
+  ports:
+    - '27017:27017'
+  volumes:
+    - mongodb_data_container:/data/db
